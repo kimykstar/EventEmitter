@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class EmitterManager {
-    Map<Object, EventEmitter> emitters = new HashMap();
+    Map<Object, EventEmitter> emitters = new HashMap<>();
 
     public void addEmitter(Object obj) {
         Class<?> clazz = obj.getClass();
