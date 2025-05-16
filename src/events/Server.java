@@ -1,11 +1,13 @@
+package events;
+
 import annotations.Emitter;
 import annotations.Event;
 
 @Emitter
-public class Client {
+public class Server {
 
     @Event("receive")
     public void receive() {
-        System.out.println("client receive message");
+        System.out.println("server receive");
     }
 }
