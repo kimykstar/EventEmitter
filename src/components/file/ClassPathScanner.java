@@ -1,5 +1,7 @@
 package components.file;
 
+import components.exception.EventPackageNotFoundException;
+
 import java.io.File;
 import java.util.Arrays;
 
@@ -10,10 +12,12 @@ public class ClassPathScanner {
 
     }
 
-    public String[] getClasses() {
+    public String[] getClassNames() throws EventPackageNotFoundException {
         File dir = new File(CLASS_PATH);
         File[] files = dir.listFiles((d, name) -> name.endsWith(".class"));
-        // ToDo: files가 Null인 경우 예외 처리
+        if (files == null) {
+            throw new EventPackageNotFoundException();
+        }
         return Arrays.stream(files).map(File::getName).toArray(String[]::new);
     }
 }
