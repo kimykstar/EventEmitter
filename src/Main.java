@@ -1,20 +1,15 @@
-import components.EmitterManager;
-import components.EventProgramEnvorinment;
+import components.bean.ClassPathScanner;
+import components.core.EmitterManager;
 
 public class Main {
 
     public static void main(String[] args) {
-        Server server = new Server();
-        Client client = new Client();
-        // 원래는 동적으로 클래스들을 읽어서 해당 클래스에 해당하는 EventEmitter를 각각 생성해야함
         EmitterManager manager = new EmitterManager();
-        manager.addEmitter(server);
-        manager.addEmitter(client);
-
+        ClassPathScanner classScanner = new ClassPathScanner();
+        manager.initManager(classScanner);
         try{
-            EventProgramEnvorinment.init(manager);
-            manager.emit(server, "receive");
-            manager.emit(client, "receive");
+            manager.emit("Server", "receive");
+            manager.emit("Client", "receive");
         } catch (Exception e) {
             e.printStackTrace();
         }
